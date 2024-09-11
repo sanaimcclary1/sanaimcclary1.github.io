@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+}
+
+.book-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.quote {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: justify;
+    font-size: 16px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #d35400;
+}
+
+.back-link {
+    display: block;
+    margin-top: 20px;
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
