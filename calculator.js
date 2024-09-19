@@ -7,6 +7,9 @@ function calculator() {
     // Array to store valid results for further analysis
     let validResults = [];
 
+    // Variable to track the number of cells to alternate colors
+    let cellCount = 0;
+
     while (true) {
         // Prompt user for first number (x)
         let x = prompt("Enter the first number (x):");
@@ -32,7 +35,12 @@ function calculator() {
         // Check if x or y are valid numbers
         if (isNaN(x) || isNaN(y)) {
             result = "Error: Wrong input number.";
-            tableContent += `<tr><td>${isNaN(x) ? 'invalid value' : x}</td><td>-</td><td>${isNaN(y) ? 'invalid value' : y}</td><td>${result}</td></tr>`;
+            tableContent += `<tr>
+                                <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${isNaN(x) ? 'invalid value' : x}</td>
+                                <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">-</td>
+                                <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${isNaN(y) ? 'invalid value' : y}</td>
+                                <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${result}</td>
+                             </tr>`;
             // Continue to allow the user to enter new inputs without breaking the loop
             continue;
         }
@@ -61,14 +69,24 @@ function calculator() {
                 result = x % y;
                 break;
             default:
-                result = "Error: Computational Error.";
-                tableContent += `<tr><td>${x}</td><td>${operator}</td><td>${y}</td><td>${result}</td></tr>`;
+                result = "Error: Invalid operator.";
+                tableContent += `<tr>
+                                    <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${x}</td>
+                                    <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${operator}</td>
+                                    <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${y}</td>
+                                    <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${result}</td>
+                                 </tr>`;
                 // Continue without breaking the loop so user can try again
                 continue;
         }
 
-        // Add the row to the table
-        tableContent += `<tr><td>${x}</td><td>${operator}</td><td>${y}</td><td>${result}</td></tr>`;
+        // Add the row to the table with alternating cell colors
+        tableContent += `<tr>
+                            <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${x}</td>
+                            <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${operator}</td>
+                            <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${y}</td>
+                            <td style="background-color:${cellCount++ % 2 === 0 ? 'blue' : 'yellow'};">${result}</td>
+                         </tr>`;
 
         // Store valid results for future statistics calculation
         if (typeof result === 'number') {
@@ -103,7 +121,12 @@ function displayStatistics(results) {
     // Create the statistics table
     let statsContent = "<table border='1'>";
     statsContent += "<tr><th>Min</th><th>Max</th><th>Average</th><th>Total</th></tr>";
-    statsContent += `<tr><td>${min}</td><td>${max}</td><td>${avg.toFixed(2)}</td><td>${total}</td></tr>`;
+    statsContent += `<tr>
+                        <td style="background-color:blue;">${min}</td>
+                        <td style="background-color:yellow;">${max}</td>
+                        <td style="background-color:blue;">${avg.toFixed(2)}</td>
+                        <td style="background-color:yellow;">${total}</td>
+                     </tr>`;
     statsContent += "</table>";
 
     // Display the statistics table
